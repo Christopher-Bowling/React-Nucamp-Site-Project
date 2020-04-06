@@ -11,6 +11,7 @@ import {
 import { Link } from 'react-router-dom';
 import CommentsModal from './CommentsModal/CommentsModal';
 import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
 
 class CommentForm extends Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class CommentForm extends Component {
           isOpen={this.state.isOpen}
           toggle={this.commentsToggleHandler}
           campsiteId={this.props.campsiteId}
-          addComment={this.props.addComment}
+          postComment={this.props.postComment}
         />
         {/* : null} */}
       </Fragment>
@@ -49,7 +50,7 @@ function RenderCampsite({ campsite }) {
   return (
     <div className='col-md-5 m-1'>
       <Card>
-        <CardImg top src={campsite.image} alt={campsite.name} />
+        <CardImg top src={baseUrl + campsite.image} alt={campsite.name} />
         <CardBody>
           <CardText>{campsite.description}</CardText>
         </CardBody>
@@ -58,8 +59,8 @@ function RenderCampsite({ campsite }) {
   );
 }
 
-function RenderComments({ comments, addComment, campsiteId }) {
-  console.log(addComment);
+function RenderComments({ comments, postComment, campsiteId }) {
+  console.log(postComment);
   return (
     <div className='col-md-5 m-1'>
       <h4>Comments</h4>
@@ -84,7 +85,7 @@ function RenderComments({ comments, addComment, campsiteId }) {
           })}
         </div>
       )}
-      <CommentForm campsiteId={campsiteId} addComment={addComment} />
+      <CommentForm campsiteId={campsiteId} postComment={postComment} />
     </div>
   );
 
@@ -131,7 +132,7 @@ function CampsiteInfo(props) {
           <RenderCampsite campsite={props.campsite} />
           <RenderComments
             comments={props.comments}
-            addComment={props.addComment}
+            postComment={props.postComment}
             campsiteId={props.campsite.id}
           />
         </div>

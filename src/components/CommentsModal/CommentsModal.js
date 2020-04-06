@@ -18,7 +18,7 @@ class CommentsModal extends Component {
     // console.log(this.props.campsiteId)
 
     this.props.toggle();
-    this.props.addComment(
+    this.props.postComment(
       this.props.campsiteId,
       values.rating,
       values.author,
